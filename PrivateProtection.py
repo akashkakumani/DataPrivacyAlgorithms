@@ -22,8 +22,8 @@ def randomMatrix(rows, columns):
     return Matrix
 
 
-def inputMatrix(columns,rows):
-    return np.random.randint(2,size=(columns,rows))
+def inputMatrix(rows,columns):
+    return np.random.randint(2,size=(rows,columns))
 
 def generateW(rho,P):
     rows, col = P.shape
