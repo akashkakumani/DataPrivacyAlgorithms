@@ -9,8 +9,6 @@ def inputMatrix(rows,columns):
 
 def Rotate(pixels):
 
-    print("INPUT :\n {} \n".format(pixels))
-
     MAXROW = len(pixels)
     MAXCOL = len(pixels[0])
     m = np.array([[float(0) for x in range(MAXROW)] for x in range(MAXCOL)])
