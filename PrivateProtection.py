@@ -59,8 +59,7 @@ def multRandomWithInput(input):
     return np.multiply(m1,m2)
 
 
-def PrivateProtection():
-    input = inputMatrix(5,5)
+def PrivateProtection(input):
     #print("INPUT :\n {} \n".format(input))
     noise = generateNoiseMatrix(0.4, 0.1,input)
     #print("NOISE :\n {} \n".format(noise))
@@ -68,7 +67,3 @@ def PrivateProtection():
     #print("MULT :\n {} \n".format(mult))
     finalProduct = np.add(noise,mult)
     return finalProduct,mult
-
-Z,P = PrivateProtection()
-print("PUBLISHING P :\n {} \n".format(P))
-print("PUBLISHING Z :\n {} \n".format(Z))
