@@ -18,7 +18,6 @@ def RandomizedResponse(p,X):
             if rand < p:
                 count+=1
                 X[i][j] = 1 - X[i][j]
-    print count
     return X
 
 
