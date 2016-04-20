@@ -14,6 +14,7 @@ def RecoverDistanceRR(p,X):
             if (i == j):
                 row.append(0)
             else:
+                row.append("{} compared with {}".format(i,j))
                 userA = X[i]
                 userB = X[j]
                 euc = distance.euclidean(userA, userB)**2

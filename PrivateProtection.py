@@ -88,7 +88,7 @@ def recoveredDistance(Z, sigma):
                 userA = Z[i]
                 userB = Z[j]
 
-                y = distance.euclidean(userA, userB)
+                y = distance.euclidean(userA, userB)**2
                 if y < 0 or y < 100:
                     print y
                 y = y - (2*k*(sigma**2))
