@@ -95,6 +95,4 @@ def recoveredDistance(Z, sigma):
                 row.append(y)
 
         dist.append(row)
-
-
     return np.array(dist)
