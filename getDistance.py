@@ -12,13 +12,13 @@ def heartMatrix():
     dist = distance.squareform(distance.pdist(matrix, metric='euclidean'))
     return dist
 
-def privateStudent():
-    matrix = main.studentCombined()
-    dist = distance.squareform(distance.pdist(matrix, metric='euclidean'))
-    return dist
+def ppStudent():
+    matrix = main.studentPP()
+    return matrix
 
-def privateHeart():
-    matrix = main.heartCombined()
-    dist = distance.squareform(distance.pdist(matrix, metric='euclidean'))
-    return dist
+def rrStudent():
+    matrix = main.studentRR()
+    return matrix
+
+
 

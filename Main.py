@@ -7,7 +7,7 @@ import math
 from scipy.spatial import distance
 
 
-
+'''
 def heartCombined():
     output1 = rr.Rotate(cf.getHeart())
     Zheart, Pheart = pp.PrivateProtection(cf.getHeart())
@@ -20,6 +20,22 @@ def studentCombined():
     Zstudent, Pstudent = pp.PrivateProtection(cf.getStudent())
     Zcombined2, P = pp.PrivateProtection(output2)
     return Zcombined2
+'''
+
+
+def studentPP():
+    output = cf.getStudent()
+    Zstudent, Pstudent, sigma = pp.PrivateProtection(output)
+    distance = pp.recoveredDistance(Zstudent,sigma)
+    return distance
+
+def studentRR():
+    output = cf.getStudent()
+    #privacy parameter
+    p = 0.4
+    Xstudent = rr.RandomizedResponse(p, output)
+    return Xstudent
+
 
 def printResults():
     print ("******************************************************************************")
@@ -76,4 +92,4 @@ def printResults():
     print(distance[1])
     print(distance[2])
     ##print("OUTPUT RECOVERED DISTANCE Z + HEART TEXT: \n\n {} \n".format(distance))
-printResults()
+
