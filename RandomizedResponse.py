@@ -1,12 +1,14 @@
 __author__ = 'akashkakumani'
-
-import numpy as np
 import random
+import RandomizedResponse as rr
+import ConvertFile as cf
+from scipy.spatial import distance
+import numpy as np
+
+
 
 def inputMatrix(rows,columns):
     return np.random.randint(2,size=(rows,columns))
-
-
 
 
 def RandomizedResponse(p,X):
@@ -20,7 +22,8 @@ def RandomizedResponse(p,X):
                 X[i][j] = 1 - X[i][j]
     return X
 
-    def RecoverDistanceRR(p,X):
+
+def RecoverDistanceRR(p,X):
     (n,k) = X.shape
     dist = []
     for i in range(0,n):
@@ -38,7 +41,5 @@ def RandomizedResponse(p,X):
         dist.append(row)
     return np.array(dist)
 
-output1 = rr.RandomizedResponse(0.4,cf.getHeart())
+output1 = RandomizedResponse(0.4,cf.getHeart())
 print(RecoverDistanceRR(0.4,output1))
-
-

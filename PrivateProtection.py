@@ -61,7 +61,7 @@ def PrivateProtection(input):
     (n,d) = input.shape
 
 
-    k = 40 # WE DONT KNOW WHAT THIS VALUE SHOULD BE
+    k = 25 # WE DONT KNOW WHAT THIS VALUE SHOULD BE
     P = generateP(d,k)
 
     x = np.matrix(input)
@@ -69,14 +69,13 @@ def PrivateProtection(input):
 
     Y = x*p
 
-    noise,sigma = generateNoiseMatrix(0.4, 0.1,Y,P)
+    noise,sigma = generateNoiseMatrix(0.4, 0.5,Y,P)
 
     Z = np.add(Y,noise)
     return Z,p,sigma
 
 
 def recoveredDistance(Z, sigma):
-    print sigma
     (n,k) = Z.shape
     dist = []
     for i in range(0,n):
@@ -89,8 +88,6 @@ def recoveredDistance(Z, sigma):
                 userB = Z[j]
 
                 y = distance.euclidean(userA, userB)**2
-                if y < 0 or y < 100:
-                    print y
                 y = y - (2*k*(sigma**2))
                 row.append(y)
 

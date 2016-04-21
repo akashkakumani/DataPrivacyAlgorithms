@@ -32,9 +32,10 @@ def studentPP():
 def studentRR():
     output = cf.getStudent()
     #privacy parameter
-    p = 0.4
+    p = .1
     Xstudent = rr.RandomizedResponse(p, output)
-    return Xstudent
+    distance = rr.RecoverDistanceRR(p,Xstudent)
+    return distance
 
 
 def printResults():
@@ -50,6 +51,8 @@ def printResults():
     print("INPUT RANDOMIZED RESPONSE + STUDENT TEXT: \n\n {} \n".format(cf.getStudent()))
     output2 = rr.RandomizedResponse(0.4,cf.getStudent())
     print("OUTPUT RANDOMIZED RESPONSE + STUDENT TEXT: \n\n {} \n".format(output2))
+
+
 
     print ("******************************************************************************")
     print ("******************************   PRIVATE PROTECTION   *************************")
@@ -67,17 +70,6 @@ def printResults():
     print("OUTPUT PRIVATE PROTECTION P + STUDENT TEXT: \n\n {} \n".format(Pstudent))
 
 
-
-    print ("*********************************************************************")
-    print ("******************************   COMBINED   *************************")
-    print ("*********************************************************************\n")
-
-    Zcombined1, P, sigma = pp.PrivateProtection(output1)
-    Zcombined2, P, sigma = pp.PrivateProtection(output2)
-
-    print("OUTPUT RANDOMIZED RESPONSE INTO PRIVATE PROTECTION + OUTPUT1: \n\n {} \n".format(Zcombined1))
-    print("OUTPUT RANDOMIZED RESPONSE INTO PRIVATE PROTECTION + OUTPUT2: \n\n {} \n".format(Zcombined2))
-
     print ("*********************************************************************")
     print ("******************************   RECOVERED DISTANCE   *************************")
     print ("*********************************************************************\n")
@@ -92,4 +84,3 @@ def printResults():
     print(distance[1])
     print(distance[2])
     ##print("OUTPUT RECOVERED DISTANCE Z + HEART TEXT: \n\n {} \n".format(distance))
-
