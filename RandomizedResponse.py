@@ -41,5 +41,3 @@ def RecoverDistanceRR(p,X):
         dist.append(row)
     return np.array(dist)
 
-output1 = RandomizedResponse(0.4,cf.getHeart())
-print(RecoverDistanceRR(0.4,output1))

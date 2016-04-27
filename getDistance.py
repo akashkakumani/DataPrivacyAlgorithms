@@ -2,6 +2,9 @@ import ConvertFile as cf
 from scipy.spatial import distance
 import Main as main
 import numpy as np
+import PrivateProtection as pp
+import GenMatrix as gm
+import RandomizedResponse as rr
 
 # original matrix distance
 def studentMatrix():
@@ -52,6 +55,20 @@ def differenceRRStudent():
     x = studentMatrix()
     y = rrStudent()
     return y - x
+
+
+
+def ppGM(generateMatrix):
+    Z, P, sigma = pp.PrivateProtection(generateMatrix)
+    distance = pp.recoveredDistance(Z, sigma)
+    return distance
+
+def rrGM(generateMatrix):
+    p = .4
+    X = rr.RandomizedResponse(p, generateMatrix)
+    distance = rr.RecoverDistanceRR(p, X)
+    return distance
+
 
 
 

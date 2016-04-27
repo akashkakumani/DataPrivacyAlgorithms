@@ -7,13 +7,16 @@ import numpy as np
 from scipy.cluster.hierarchy import dendrogram, linkage, cophenet, fcluster
 from scipy.spatial.distance import pdist
 import getDistance as gd
+import GenMatrix as gm
+
+generatedMatrix = gm.cluster(100)
 
 ##############
 '''ORIGINAL'''
 ##############
 
 #for original student distance matrix
-X = gd.studentMatrix()
+X = gm.distanceMatrix(generatedMatrix)
 Z = linkage(X, 'ward')
 #print X.shape
 c, coph_dists = cophenet(Z, pdist(X))
@@ -51,7 +54,7 @@ plt.show()
 ########################
 
 #for dp student distance matrix
-X = gd.ppStudent()
+X = gd.ppGM(generatedMatrix)
 #print X.shape
 Z = linkage(X, 'ward')
 c, coph_dists = cophenet(Z, pdist(X))
@@ -95,7 +98,7 @@ for x in clustersOriginalDict.keys():
             maximum = percent
             comp1 = x
             comp2 = y
-    print "Original vs PP ", comp1, comp2, maximum
+    #print "Original vs PP ", comp1, comp2, maximum
 print
 '''
 #Get percentage of data points that are in the same cluster in both:
@@ -116,7 +119,7 @@ plt.show()
 ##########################
 
 #for dp student distance matrix
-X = gd.rrStudent()
+X = gd.rrGM(generatedMatrix)
 #print X.shape
 Z = linkage(X, 'ward')
 c, coph_dists = cophenet(Z, pdist(X))
@@ -160,7 +163,7 @@ for x in clustersOriginalDict.keys():
             maximum = percent
             comp1 = x
             comp2 = y
-    print "Original vs RR ", comp1, comp2, maximum
+    #print "Original vs RR ", comp1, comp2, maximum
        
 '''
 #Get percentage of data points that are in the same cluster in both:
