@@ -21,7 +21,7 @@ def cluster(n):
 
     cluster1.append(a)
 
-    for j in range(0,100):
+    for j in range(0,300):
         x = []
         for i in range(0,len(a)):
             r = random.random()
@@ -43,7 +43,7 @@ def cluster(n):
 
     cluster2.append(a)
 
-    for j in range(0,100):
+    for j in range(0,300):
         x = []
         for i in range(0,len(a)):
             r = random.random()
@@ -63,7 +63,7 @@ def cluster(n):
 
     cluster3.append(a)
 
-    for j in range(0,100):
+    for j in range(0,300):
         x = []
         for i in range(0,len(a)):
             r = random.random()

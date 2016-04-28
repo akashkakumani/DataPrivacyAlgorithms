@@ -64,7 +64,7 @@ def ppGM(generateMatrix):
     return distance
 
 def rrGM(generateMatrix):
-    p = .4
+    p = .37
     X = rr.RandomizedResponse(p, generateMatrix)
     distance = rr.RecoverDistanceRR(p, X)
     return distance

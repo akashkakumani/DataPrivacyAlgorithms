@@ -9,7 +9,7 @@ from scipy.spatial.distance import pdist
 import getDistance as gd
 import GenMatrix as gm
 
-generatedMatrix = gm.cluster(100)
+generatedMatrix = gm.cluster(200)
 
 ##############
 '''ORIGINAL'''
@@ -93,12 +93,12 @@ for x in clustersOriginalDict.keys():
         l2 = np.array(clustersPPDict[y])
         d = [val for val in l1 if val in l2]
         percent = (len(d)*1.0)/(len(l1)*1.0)
-        #Take highest percentage overlap for each cluster in original 
+        #Take highest percentage overlap for each cluster in original
         if percent > maximum:
             maximum = percent
             comp1 = x
             comp2 = y
-    #print "Original vs PP ", comp1, comp2, maximum
+    print "Original vs PP ", comp1, comp2, maximum
 print
 '''
 #Get percentage of data points that are in the same cluster in both:
@@ -109,7 +109,7 @@ for x in list(differencePP):
     if x == 0:
         count+=1
 
-percentDifferencePP = 1.0 - (count*1.0)/(len(differencePP)*1.0) 
+percentDifferencePP = 1.0 - (count*1.0)/(len(differencePP)*1.0)
 '''
 
 plt.show()
@@ -163,8 +163,8 @@ for x in clustersOriginalDict.keys():
             maximum = percent
             comp1 = x
             comp2 = y
-    #print "Original vs RR ", comp1, comp2, maximum
-       
+    print "Original vs RR ", comp1, comp2, maximum
+
 '''
 #Get percentage of data points that are in the same cluster in both:
 differenceRR = np.array(sclustersOriginal) - np.array(sclustersRR)
@@ -174,7 +174,6 @@ for x in differenceRR:
     if x == 0:
         count+=1
 
-percentDifferenceRR = 1.0 - (count*1.0)/(len(differenceRR)*1.0) 
+percentDifferenceRR = 1.0 - (count*1.0)/(len(differenceRR)*1.0)
 '''
 plt.show()
-

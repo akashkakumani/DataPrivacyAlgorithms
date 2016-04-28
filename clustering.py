@@ -5,7 +5,9 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 from scipy.cluster.hierarchy import cophenet
 from scipy.spatial.distance import pdist
 import getDistance as gd
+import GenMatrix as gm
 
+generatedMatrix = gm.cluster(100)
 '''
 X = gd.studentMatrix()
 kmeans = KMeans(init='k-means++',n_clusters = 2, n_init=20)
@@ -24,7 +26,7 @@ plt.show()
 '''
 
 #for original student distance matrix
-X = gd.studentMatrix()
+X = gm.distanceMatrix(gm.cluster(100))
 Z = linkage(X, 'ward')
 print X.shape
 c, coph_dists = cophenet(Z, pdist(X))
@@ -46,7 +48,7 @@ dendrogram(
 plt.show()
 
 #for dp student distance matrix
-X = gd.privateStudent()
+X = gd.ppGM()
 print X.shape
 Z = linkage(X, 'ward')
 c, coph_dists = cophenet(Z, pdist(X))

@@ -20,6 +20,7 @@ def generateP(d, k):
                 cell = pow(float(3)/k,.5)
                 cell *= -1
             Matrix[r][c] = cell
+
     return Matrix
 
 
@@ -33,7 +34,7 @@ def generateW(rho,P):
         sum = 0
         for j in range(0,col):
             sum += (abs(P[i][j])**rho)
-        sum**(1.0/rho)
+        sum = sum**(1.0/rho)
         if sum > maxSum:
             maxSum = sum
     return maxSum
@@ -42,7 +43,7 @@ def generateNoiseMatrix(delta,epsilon,Y,P):
     logInput = float(1)/(2*delta)
     ln = math.log(logInput,math.e) + epsilon
     W = generateW(2,P)
-    sigma = W * (math.sqrt((2*ln))/epsilon)
+    sigma = W * (math.sqrt(  (2*ln))/epsilon  )
 
     rows, col = Y.shape
     s = np.random.normal(0, sigma**2, rows*col)
@@ -61,7 +62,7 @@ def PrivateProtection(input):
     (n,d) = input.shape
 
 
-    k = 25 # WE DONT KNOW WHAT THIS VALUE SHOULD BE
+    k = 100 # WE DONT KNOW WHAT THIS VALUE SHOULD BE
     P = generateP(d,k)
 
     x = np.matrix(input)
@@ -69,9 +70,10 @@ def PrivateProtection(input):
 
     Y = x*p
 
-    noise,sigma = generateNoiseMatrix(0.4, 0.5,Y,P)
+    noise,sigma = generateNoiseMatrix(0.01, 0.5,Y,P)
 
     Z = np.add(Y,noise)
+    #print sigma
     return Z,p,sigma
 
 
