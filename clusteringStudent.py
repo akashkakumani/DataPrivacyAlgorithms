@@ -40,9 +40,11 @@ To = dendrogram(
 labelsOriginal = To['ivl']
 clustersOriginal = fcluster(Z,0.7*max(Z[:,2]),'distance')
 clustersOriginalDict = defaultdict(list)
+colorsOriginal = To['color_list']
 
-for x in range(0, len(clustersOriginal)):
-    clustersOriginalDict[clustersOriginal[x]].append(int(labelsOriginal[x]))
+for x in range(0, len(colorsOriginal)):
+    #clustersOriginalDict[clustersOriginal[x]].append(int(labelsOriginal[x]))
+    clustersOriginalDict[colorsOriginal[x]].append(int(labelsOriginal[x]))
 
 for x in clustersOriginalDict.keys():
     clustersOriginalDict[x].sort()
@@ -76,11 +78,13 @@ Tpp = dendrogram(
 
 #Get data points in each cluster
 labelsPP = Tpp['ivl']
+colorsPP = Tpp['color_list']
 clustersPP = fcluster(Z,0.7*max(Z[:,2]),'distance')
 clustersPPDict = defaultdict(list)
 
-for x in range(0, len(clustersPP)):
-    clustersPPDict[clustersPP[x]].append(int(labelsPP[x]))
+for x in range(0, len(colorsPP)):
+    #clustersPPDict[clustersPP[x]].append(int(labelsPP[x]))
+    clustersPPDict[colorsPP[x]].append(int(labelsPP[x]))
 
 for x in clustersPPDict.keys():
     clustersPPDict[x].sort()
@@ -143,9 +147,11 @@ Trr = dendrogram(
 labelsRR = Trr['ivl']
 clustersRR = fcluster(Z,0.7*max(Z[:,2]),'distance')
 clustersRRDict = defaultdict(list)
+colorsRR = Trr['color_list']
 
-for x in range(0, len(clustersRR)):
-    clustersRRDict[clustersRR[x]].append(int(labelsRR[x]))
+for x in range(0, len(colorsRR)):
+    #clustersRRDict[clustersRR[x]].append(int(labelsRR[x]))
+    clustersRRDict[colorsRR[x]].append(int(labelsRR[x]))
 
 for x in clustersRRDict.keys():
     clustersRRDict[x].sort()
