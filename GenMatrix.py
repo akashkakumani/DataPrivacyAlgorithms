@@ -14,68 +14,67 @@ import matplotlib.pyplot as plt
 def cluster(n):
     cluster1 = []
     a = []
-    for i in range (0,n/3):
+    for i in range (0,n/4):
         a.append(1)
-    for i in range(n/3,n):
+    for i in range(n/4,n):
         a.append(0)
-
     cluster1.append(a)
-
-    for j in range(0,300):
-        x = []
-        for i in range(0,len(a)):
-            r = random.random()
-            if r > 0.10:
-                x.append(a[i])
-            else:
-                x.append( 1 - a[1])
-        cluster1.append(x)
 
 
     cluster2 = []
-    a = []
-    for i in range (0,n/3):
-        a.append(0)
-    for i in range(n/3,n - n/3):
-        a.append(1)
-    for i in range(n - n/3, n):
-        a.append(0)
-
-    cluster2.append(a)
-
-    for j in range(0,300):
-        x = []
-        for i in range(0,len(a)):
-            r = random.random()
-            if r > 0.10:
-                x.append(a[i])
-            else:
-                x.append( 1 - a[1])
-        cluster2.append(x)
+    b = []
+    for i in range (0,n/4):
+        b.append(0)
+    for i in range(n/4,n - n/2):
+        b.append(1)
+    for i in range(n - n/2, n):
+        b.append(0)
+    cluster2.append(b)
 
 
     cluster3 = []
-    a = []
-    for i in range(0,n - n/3):
-        a.append(0)
-    for i in range(n - n/3, n):
-        a.append(1)
+    c = []
+    for i in range(0,n - n/2):
+        c.append(0)
+    for i in range(n - n/2, n - n/4):
+        c.append(1)
+    for i in range(n - n/4, n):
+        c.append(0)
+    cluster3.append(c)
 
-    cluster3.append(a)
+
+    cluster4 = []
+    d = []
+    for i in range(0,n - n/4):
+        d.append(0)
+    for i in range(n - n/4, n):
+        d.append(1)
+    cluster4.append(d)
+
 
     for j in range(0,300):
-        x = []
+        c1 = []
+        c2 = []
+        c3 = []
+        c4 = []
         for i in range(0,len(a)):
             r = random.random()
             if r > 0.10:
-                x.append(a[i])
+                c1.append(a[i])
+                c2.append(b[i])
+                c3.append(c[i])
+                c4.append(d[i])
             else:
-                x.append( 1 - a[1])
-        cluster3.append(x)
+                c1.append( 1 - a[i])
+                c2.append( 1 - b[i])
+                c3.append( 1 - c[i])
+                c4.append( 1 - d[i])
+        cluster1.append(c1)
+        cluster2.append(c2)
+        cluster3.append(c3)
+        cluster4.append(c4)
 
-
-    return np.array(cluster1 + cluster2 + cluster3)
-
+    return np.array(cluster1 + cluster2 + cluster3 + cluster4)
 
 
 def distanceMatrix(a):
