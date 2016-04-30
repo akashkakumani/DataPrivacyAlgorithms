@@ -1,4 +1,4 @@
-#GET CLUSTERING FOR STUDENT DATA USING ORIGINAL, PP, AND RR
+#GET CLUSTERING FOR DATA USING ORIGINAL, PP, AND RR
 
 from sklearn.cluster import KMeans
 from collections import defaultdict
@@ -18,31 +18,28 @@ generatedMatrix = gm.cluster(150)
 #for original student distance matrix
 X = gm.distanceMatrix(generatedMatrix)
 Z = linkage(X, 'ward')
-#print X.shape
 c, coph_dists = cophenet(Z, pdist(X))
 #print "Hierarchical Error ",(c) #Closer to 0, the better the fit
 
-plt.title('Hierarchical Clustering Dendrogram on Original Student distance matrix')
-#plt.xlabel('cluster size')
-plt.ylabel('distance')
+plt.title('Hierarchical Clustering Dendrogram on Original Distance Matrix')
+plt.ylabel('Distance')
+plt.xlabel('Leaf Nodes')
 
 #truncated dendrogram
 To = dendrogram(
     Z,
-    #truncate_mode='lastp',  # show only the last p merged clusters
-    #p=12,  # show only the last p merged clusters
-    leaf_rotation=90.,
-    leaf_font_size=12.,
-    #show_contracted=True,  # to get a distribution impression in truncated branches
+    no_labels=True
 )
 
 #Get data points in each cluster
 labelsOriginal = To['ivl']
 clustersOriginal = fcluster(Z,0.7*max(Z[:,2]),'distance')
 clustersOriginalDict = defaultdict(list)
+colorsOriginal = To['color_list']
 
-for x in range(0, len(clustersOriginal)):
-    clustersOriginalDict[clustersOriginal[x]].append(int(labelsOriginal[x]))
+for x in range(0, len(colorsOriginal)):
+    #clustersOriginalDict[clustersOriginal[x]].append(int(labelsOriginal[x]))
+    clustersOriginalDict[colorsOriginal[x]].append(int(labelsOriginal[x]))
 
 for x in clustersOriginalDict.keys():
     clustersOriginalDict[x].sort()
@@ -55,32 +52,29 @@ plt.show()
 
 #for dp student distance matrix
 X = gd.ppGM(generatedMatrix)
-#print X.shape
 Z = linkage(X, 'ward')
 c, coph_dists = cophenet(Z, pdist(X))
 #print "Hierarchical Error ",(c) #Closer to 0, the better the fit
 
-plt.title('Hierarchical Clustering Dendrogram on PP Student distance matrix')
-#plt.xlabel('cluster size')
-plt.ylabel('distance')
+plt.title('Hierarchical Clustering Dendrogram on PP Distance Matrix')
+plt.ylabel('Distance')
+plt.xlabel('Leaf Nodes')
 
 #truncated dendrogram
 Tpp = dendrogram(
     Z,
-    #truncate_mode='lastp',  # show only the last p merged clusters
-    #p=12,  # show only the last p merged clusters
-    leaf_rotation=90.,
-    leaf_font_size=12.,
-    #show_contracted=True,  # to get a distribution impression in truncated branches
+    no_labels=True
 )
 
 #Get data points in each cluster
 labelsPP = Tpp['ivl']
+colorsPP = Tpp['color_list']
 clustersPP = fcluster(Z,0.7*max(Z[:,2]),'distance')
 clustersPPDict = defaultdict(list)
 
-for x in range(0, len(clustersPP)):
-    clustersPPDict[clustersPP[x]].append(int(labelsPP[x]))
+for x in range(0, len(colorsPP)):
+    #clustersPPDict[clustersPP[x]].append(int(labelsPP[x]))
+    clustersPPDict[colorsPP[x]].append(int(labelsPP[x]))
 
 for x in clustersPPDict.keys():
     clustersPPDict[x].sort()
@@ -98,7 +92,8 @@ for x in clustersOriginalDict.keys():
             maximum = percent
             comp1 = x
             comp2 = y
-    print "Original vs PP ", comp1, comp2, maximum
+    if comp1 != 'b':
+        print "Original vs PP ", comp1, comp2, maximum
 print
 '''
 #Get percentage of data points that are in the same cluster in both:
@@ -125,27 +120,25 @@ Z = linkage(X, 'ward')
 c, coph_dists = cophenet(Z, pdist(X))
 #print "Hierarchical Error ",(c) #Closer to 0, the better the fit
 
-plt.title('Hierarchical Clustering Dendrogram on RR Student distance matrix')
-#plt.xlabel('cluster size')
-plt.ylabel('distance')
+plt.title('Hierarchical Clustering Dendrogram on RR Distance Matrix')
+plt.ylabel('Distance')
+plt.xlabel('Leaf Nodes')
 
 #truncated dendrogram
 Trr = dendrogram(
     Z,
-    #truncate_mode='lastp',  # show only the last p merged clusters
-    #p=12,  # show only the last p merged clusters
-    leaf_rotation=90.,
-    leaf_font_size=12.,
-    #show_contracted=True,  # to get a distribution impression in truncated branches
+    no_labels=True
 )
 
 #Get data points in each cluster
 labelsRR = Trr['ivl']
 clustersRR = fcluster(Z,0.7*max(Z[:,2]),'distance')
 clustersRRDict = defaultdict(list)
+colorsRR = Trr['color_list']
 
-for x in range(0, len(clustersRR)):
-    clustersRRDict[clustersRR[x]].append(int(labelsRR[x]))
+for x in range(0, len(colorsRR)):
+    #clustersRRDict[clustersRR[x]].append(int(labelsRR[x]))
+    clustersRRDict[colorsRR[x]].append(int(labelsRR[x]))
 
 for x in clustersRRDict.keys():
     clustersRRDict[x].sort()
@@ -163,7 +156,8 @@ for x in clustersOriginalDict.keys():
             maximum = percent
             comp1 = x
             comp2 = y
-    print "Original vs RR ", comp1, comp2, maximum
+    if comp1 != 'b':
+        print "Original vs RR ", comp1, comp2, maximum
 
 '''
 #Get percentage of data points that are in the same cluster in both:
