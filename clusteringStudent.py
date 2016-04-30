@@ -9,7 +9,7 @@ from scipy.spatial.distance import pdist
 import getDistance as gd
 import GenMatrix as gm
 
-generatedMatrix = gm.cluster(200)
+generatedMatrix = gm.cluster(150)
 
 ##############
 '''ORIGINAL'''
