@@ -18,22 +18,17 @@ generatedMatrix = gm.cluster(200)
 #for original student distance matrix
 X = gm.distanceMatrix(generatedMatrix)
 Z = linkage(X, 'ward')
-#print X.shape
 c, coph_dists = cophenet(Z, pdist(X))
 #print "Hierarchical Error ",(c) #Closer to 0, the better the fit
 
-plt.title('Hierarchical Clustering Dendrogram on Original Student distance matrix')
-#plt.xlabel('cluster size')
-plt.ylabel('distance')
+plt.title('Hierarchical Clustering Dendrogram on Original Distance Matrix')
+plt.ylabel('Distance')
+plt.xlabel('Leaf Nodes')
 
 #truncated dendrogram
 To = dendrogram(
     Z,
-    #truncate_mode='lastp',  # show only the last p merged clusters
-    #p=12,  # show only the last p merged clusters
-    leaf_rotation=90.,
-    leaf_font_size=12.,
-    #show_contracted=True,  # to get a distribution impression in truncated branches
+    no_labels=True
 )
 
 #Get data points in each cluster
@@ -57,23 +52,18 @@ plt.show()
 
 #for dp student distance matrix
 X = gd.ppGM(generatedMatrix)
-#print X.shape
 Z = linkage(X, 'ward')
 c, coph_dists = cophenet(Z, pdist(X))
 #print "Hierarchical Error ",(c) #Closer to 0, the better the fit
 
-plt.title('Hierarchical Clustering Dendrogram on PP Student distance matrix')
-#plt.xlabel('cluster size')
-plt.ylabel('distance')
+plt.title('Hierarchical Clustering Dendrogram on PP Distance Matrix')
+plt.ylabel('Distance')
+plt.xlabel('Leaf Nodes')
 
 #truncated dendrogram
 Tpp = dendrogram(
     Z,
-    #truncate_mode='lastp',  # show only the last p merged clusters
-    #p=12,  # show only the last p merged clusters
-    leaf_rotation=90.,
-    leaf_font_size=12.,
-    #show_contracted=True,  # to get a distribution impression in truncated branches
+    no_labels=True
 )
 
 #Get data points in each cluster
@@ -102,7 +92,8 @@ for x in clustersOriginalDict.keys():
             maximum = percent
             comp1 = x
             comp2 = y
-    print "Original vs PP ", comp1, comp2, maximum
+    if comp1 != 'b':
+        print "Original vs PP ", comp1, comp2, maximum
 print
 '''
 #Get percentage of data points that are in the same cluster in both:
@@ -129,18 +120,14 @@ Z = linkage(X, 'ward')
 c, coph_dists = cophenet(Z, pdist(X))
 #print "Hierarchical Error ",(c) #Closer to 0, the better the fit
 
-plt.title('Hierarchical Clustering Dendrogram on RR Student distance matrix')
-#plt.xlabel('cluster size')
-plt.ylabel('distance')
+plt.title('Hierarchical Clustering Dendrogram on RR Distance Matrix')
+plt.ylabel('Distance')
+plt.xlabel('Leaf Nodes')
 
 #truncated dendrogram
 Trr = dendrogram(
     Z,
-    #truncate_mode='lastp',  # show only the last p merged clusters
-    #p=12,  # show only the last p merged clusters
-    leaf_rotation=90.,
-    leaf_font_size=12.,
-    #show_contracted=True,  # to get a distribution impression in truncated branches
+    no_labels=True
 )
 
 #Get data points in each cluster
@@ -169,7 +156,8 @@ for x in clustersOriginalDict.keys():
             maximum = percent
             comp1 = x
             comp2 = y
-    print "Original vs RR ", comp1, comp2, maximum
+    if comp1 != 'b':
+        print "Original vs RR ", comp1, comp2, maximum
 
 '''
 #Get percentage of data points that are in the same cluster in both:
